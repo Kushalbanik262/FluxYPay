@@ -22,7 +22,7 @@ jobs:
           cache: maven
 
       - name: Docker Up
-        run: docker compose up -f Docker/docker-compose.yaml up -d
+        run: docker compose -f Docker/docker-compose.yaml up -d
 
       - name: Build with Maven
         run: mvn clean install -DskipTests
