@@ -6,7 +6,7 @@ It is built with a focus on security, scalability, and developer-friendliness, m
 ---
 
 ## Features
-- REST API for payments — initiate and process payments with minimal API calls.
+- REST API-ready architecture for future payment operations.
 - Client management — securely store and manage merchant/client credentials.
 - Transaction logging — maintain a full audit trail for every transaction.
 - Extensible architecture — easily integrate new payment methods.
@@ -16,28 +16,13 @@ It is built with a focus on security, scalability, and developer-friendliness, m
 ---
 
 ## Tech Stack
-- **Backend Framework:** Java Spring Boot
-- **Database:** MySQL / PostgreSQL
-- **Build Tool:** Maven / Gradle
+- **Backend Framework:** Java 17, Spring Boot 3.5.4
+- **Database:** PostgreSQL / MySQL
+- **Build Tool:** Maven
 - **Security:** Spring Security, JWT/OAuth2
 - **Testing:** JUnit, Mockito
-- **Other:** Hibernate, RESTful APIs
-
----
-
-## Project Structure
-```
-FluxPay/
- ├── src/
- │   ├── main/
- │   │   ├── java/com/fluxpay/...
- │   │   └── resources/
- │   └── test/
- │       └── java/com/fluxpay/...
- ├── pom.xml
- ├── README.md
- └── .gitignore
-```
+- **ORM:** Hibernate, Spring Data JPA
+- **Others:** Spring Boot Actuator for monitoring
 
 ---
 
@@ -46,7 +31,7 @@ FluxPay/
 ### Prerequisites
 - Java 17 or later
 - Maven 3.8+
-- MySQL/PostgreSQL (or any supported database)
+- PostgreSQL or MySQL
 - Git
 
 ### Clone the Repository
@@ -56,11 +41,11 @@ cd FluxPay
 ```
 
 ### Configure the Database
-Update `application.properties` or `application.yml`:
+Update `src/main/resources/application.properties` or `application.yml`:
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/fluxpay
-spring.datasource.username=root
-spring.datasource.password=yourpassword
+spring.datasource.url=jdbc:postgresql://localhost:5432/fluxpay
+spring.datasource.username=your-db-user
+spring.datasource.password=your-db-password
 spring.jpa.hibernate.ddl-auto=update
 ```
 
@@ -69,48 +54,34 @@ spring.jpa.hibernate.ddl-auto=update
 mvn clean install
 mvn spring-boot:run
 ```
-The application will start at: `http://localhost:8080`
-
----
-
-## API Endpoints
-
-### Payments
-| Method | Endpoint                  | Description            |
-|--------|---------------------------|------------------------|
-| POST   | `/api/payments/initiate`   | Initiate a new payment |
-| GET    | `/api/payments/{id}`       | Get payment status     |
-| GET    | `/api/payments/history`    | Get payment history    |
-
-### Clients
-| Method | Endpoint                  | Description            |
-|--------|---------------------------|------------------------|
-| POST   | `/api/clients`             | Register a new client  |
-| GET    | `/api/clients/{id}`        | Get client details     |
+The application will be available at:
+```
+http://localhost:8080
+```
 
 ---
 
 ## Security
-- JWT authentication — all API requests require a valid token.
-- Secure credential storage — no plain-text secrets.
-- Configurable CORS for controlled API access.
+- JWT authentication ready for future API integration.
+- Encrypted storage of sensitive credentials.
+- Configurable CORS for restricted API access.
 
 ---
 
 ## Deployment
 
-### Using Docker
+### Docker
 ```bash
 docker build -t fluxpay .
 docker run -p 8080:8080 fluxpay
 ```
 
 ### Cloud Deployment
-FluxPay can be deployed to AWS, Azure, GCP, or Heroku with minimal configuration.
+FluxPay is cloud-ready and can be deployed to AWS, Azure, GCP, or Heroku.
 
 ---
 
-## Running Tests
+## Testing
 ```bash
 mvn test
 ```
@@ -118,24 +89,13 @@ mvn test
 ---
 
 ## Roadmap
+- [ ] Develop REST APIs for payment operations
 - [ ] Multi-currency support
 - [ ] Integration with Stripe, PayPal, Razorpay
-- [ ] Webhooks for transaction updates
+- [ ] Webhooks for transaction status updates
 - [ ] Admin dashboard for analytics
-
----
-
-## Contributing
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/feature-name`)
-3. Commit your changes (`git commit -m 'Add feature-name'`)
-4. Push to the branch (`git push origin feature/feature-name`)
-5. Open a pull request
 
 ---
 
 ## License
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
----
-
