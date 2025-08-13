@@ -5,7 +5,7 @@ services:
     image: postgres:16-alpine # Or a specific version like postgres:latest
     container_name: my-postgres-db
     environment:
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: Payment
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
     ports:
