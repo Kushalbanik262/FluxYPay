@@ -139,8 +139,3 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 ---
 
-## Author
-**Kushal Banik**  
-Email: kushalbanik93@gmail.com  
-LinkedIn: [linkedin.com/in/kushalbanik](https://linkedin.com/in/kushalbanik)  
-GitHub: [github.com/<your-username>](https://github.com/<your-username>)
