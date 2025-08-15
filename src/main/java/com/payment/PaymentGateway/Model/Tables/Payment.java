@@ -1,7 +1,6 @@
 package com.payment.PaymentGateway.Model.Tables;
 
 import com.payment.PaymentGateway.Model.Payment.PAYMENT_STATUS;
-import com.payment.PaymentGateway.Model.Payment.PaymentRequest;
 import jakarta.persistence.*;
 
 import java.util.Set;

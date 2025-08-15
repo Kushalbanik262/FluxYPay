@@ -1,6 +1,6 @@
 package com.payment.PaymentGateway.PaymentIntegration.Validator;
 
-import com.payment.PaymentGateway.Model.Payment.PaymentRequest;
+import com.payment.PaymentGateway.Model.Tables.PaymentRequest;
 import com.payment.PaymentGateway.Model.Payment.PaymentVerificationResult;
 import com.payment.PaymentGateway.Model.Tables.TransactionRequest;
 

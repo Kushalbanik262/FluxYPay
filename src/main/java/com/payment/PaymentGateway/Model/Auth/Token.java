@@ -1,6 +1,6 @@
 package com.payment.PaymentGateway.Model.Auth;
 
-import com.payment.PaymentGateway.Model.Payment.PaymentRequest;
+import com.payment.PaymentGateway.Model.Tables.PaymentRequest;
 import com.payment.PaymentGateway.Model.Tables.TransactionRequest;
 import jakarta.persistence.*;
 
