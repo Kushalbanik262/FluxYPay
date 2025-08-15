@@ -1,9 +1,9 @@
 package com.payment.PaymentGateway.Services;
 
 import com.payment.PaymentGateway.Model.Auth.AuthenticationResponse;
-import com.payment.PaymentGateway.Model.PaymentDeclineRequest;
-import com.payment.PaymentGateway.Model.PaymentResponse;
-import com.payment.PaymentGateway.Model.PaymentRequest;
+import com.payment.PaymentGateway.Model.Payment.PaymentDeclineRequest;
+import com.payment.PaymentGateway.Model.Payment.PaymentResponse;
+import com.payment.PaymentGateway.Model.Payment.PaymentRequest;
 import com.payment.PaymentGateway.Model.Tables.TransactionRequest;
 
 import java.util.concurrent.Future;

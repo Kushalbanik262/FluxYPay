@@ -1,4 +1,4 @@
-package com.payment.PaymentGateway.Model;
+package com.payment.PaymentGateway.Model.Payment;
 
 import com.payment.PaymentGateway.PaymentIntegration.PAYMENT_TYPE;
 import com.payment.PaymentGateway.PaymentIntegration.PaymentNetwork;
