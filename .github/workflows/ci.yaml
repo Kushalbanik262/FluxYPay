@@ -2,14 +2,13 @@ name: CI with Maven
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "*" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,6 +25,11 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install -DskipTests
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Up
+      - run: docker compose -f Docker/docker-compose.yaml up -d
 
       - name: Run Tests
         run: mvn test
