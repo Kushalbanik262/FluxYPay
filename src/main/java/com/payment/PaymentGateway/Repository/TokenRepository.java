@@ -1,7 +1,9 @@
 package com.payment.PaymentGateway.Repository;
 
-import com.payment.PaymentGateway.Model.Auth.Token;
+import com.payment.PaymentGateway.Model.Tables.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface TokenRepository extends JpaRepository<Token,String> {
 }

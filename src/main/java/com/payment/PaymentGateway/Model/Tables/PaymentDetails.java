@@ -32,4 +32,12 @@ public abstract class PaymentDetails {
     public void setPaymentType(PAYMENT_TYPE paymentType) {
         this.paymentType = paymentType;
     }
+
+    @Override
+    public String toString() {
+        return "PaymentDetails{" +
+                "id='" + id + '\'' +
+                ", paymentType=" + paymentType +
+                '}';
+    }
 }

@@ -1,6 +1,5 @@
 package com.payment.PaymentGateway.Model.Tables;
 
-import com.payment.PaymentGateway.Model.Auth.Token;
 import com.payment.PaymentGateway.Model.Payment.TRANSACTION_STATUS;
 import com.payment.PaymentGateway.Model.Request;
 import com.payment.PaymentGateway.PaymentIntegration.PAYMENT_TYPE;
@@ -14,7 +13,7 @@ import jakarta.persistence.*;
 public abstract class TransactionRequest extends Request {
     @Id
     @Column(name = "id")
-    private String paymentRequestId;
+    private String id;
     @Column
     private String dateTime;
     @Column(name = "amount")

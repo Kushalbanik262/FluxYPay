@@ -1,4 +1,4 @@
 package com.payment.PaymentGateway.PaymentIntegration;
 
-public class MasterCardNetwork implements PaymentNetwork{
+public class MasterCardNetwork extends PaymentNetwork{
 }

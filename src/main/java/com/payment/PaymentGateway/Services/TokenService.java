@@ -1,6 +1,6 @@
 package com.payment.PaymentGateway.Services;
 
-import com.payment.PaymentGateway.Model.Auth.Token;
+import com.payment.PaymentGateway.Model.Tables.Token;
 import com.payment.PaymentGateway.Model.Auth.TokenVerificationStatus;
 import com.payment.PaymentGateway.Model.Auth.Token_Type;
 

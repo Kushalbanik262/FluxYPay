@@ -1,6 +1,6 @@
 package com.payment.PaymentGateway.Model.Payment;
 
-import com.payment.PaymentGateway.Model.Auth.Token;
+import com.payment.PaymentGateway.Model.Tables.Token;
 
 /**
  * Payment verification Result
