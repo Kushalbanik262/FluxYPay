@@ -25,11 +25,23 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install -DskipTests
+
   test:
     runs-on: ubuntu-latest
+    needs: build
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
       - name: Docker Up
-      - run: docker compose -f Docker/docker-compose.yaml up -d
+        run: docker compose -f Docker/docker-compose.yaml up -d
 
       - name: Run Tests
         run: mvn test
