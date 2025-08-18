@@ -26,6 +26,16 @@ It is built with a focus on security, scalability, and developer-friendliness, m
 
 ---
 
+---
+
+## Entity Relationship Diagram (ERD)
+
+The database schema of FluxPay is illustrated below:
+
+![ERD.png](Docs%2FERD.png)
+
+---
+
 ## Getting Started
 
 ### Prerequisites
