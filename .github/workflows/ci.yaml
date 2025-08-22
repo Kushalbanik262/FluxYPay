@@ -68,6 +68,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository_owner | toLower }}/fluxypay:latest
+          tags: ghcr.io/${{ toLower(github.repository_owner) }}/fluxypay:latest
 
 
