@@ -1,6 +1,6 @@
-# FluxPay — Payment Gateway & Processor
+# FluxYPay — Payment Gateway & Processor
 
-FluxPay is a Java Spring Boot-based payment gateway designed to securely process transactions, manage client integrations, and support multiple payment flows.  
+FluxYPay is a Java Spring Boot-based payment gateway designed to securely process transactions, manage client integrations, and support multiple payment flows.  
 It is built with a focus on security, scalability, and developer-friendliness, making it easy to integrate into modern applications.
 
 ---
@@ -30,7 +30,7 @@ It is built with a focus on security, scalability, and developer-friendliness, m
 
 ## Entity Relationship Diagram (ERD)
 
-The database schema of FluxPay is illustrated below:
+The database schema of FluxYPay is illustrated below:
 
 ![ERD.png](Docs%2FERD.png)
 
@@ -46,14 +46,14 @@ The database schema of FluxPay is illustrated below:
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/FluxPay.git
-cd FluxPay
+git clone https://github.com/<your-username>/FluxYPay.git
+cd FluxYPay
 ```
 
 ### Configure the Database
 Update `src/main/resources/application.properties` or `application.yml`:
 ```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/fluxpay
+spring.datasource.url=jdbc:postgresql://localhost:5432/FluxYPay
 spring.datasource.username=your-db-user
 spring.datasource.password=your-db-password
 spring.jpa.hibernate.ddl-auto=update
@@ -82,12 +82,12 @@ http://localhost:8080
 
 ### Docker
 ```bash
-docker build -t fluxpay .
-docker run -p 8080:8080 fluxpay
+docker build -t FluxYPay .
+docker run -p 8080:8080 FluxYPay
 ```
 
 ### Cloud Deployment
-FluxPay is cloud-ready and can be deployed to AWS, Azure, GCP, or Heroku.
+FluxYPay is cloud-ready and can be deployed to AWS, Azure, GCP, or Heroku.
 
 ---
 
@@ -103,7 +103,6 @@ mvn test
 - [ ] Multi-currency support
 - [ ] Integration with Stripe, PayPal, Razorpay
 - [ ] Webhooks for transaction status updates
-- [ ] Admin dashboard for analytics
 
 ---
 
