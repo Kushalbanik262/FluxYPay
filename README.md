@@ -1,5 +1,7 @@
 # FluxYPay — Payment Gateway & Processor
 
+![FluxYPay Logo](Docs%2Flogo.png)
+
 FluxYPay is a Java Spring Boot-based payment gateway designed to securely process transactions, manage client integrations, and support multiple payment flows.  
 It is built with a focus on security, scalability, and developer-friendliness, making it easy to integrate into modern applications.
 
