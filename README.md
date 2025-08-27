@@ -20,8 +20,9 @@ It is built with a focus on security, scalability, and developer-friendliness, m
 - Extensible architecture — easily integrate new payment methods.
 - Security-focused — encrypted credentials and token-based authentication.
 - Spring Boot microservices ready — deploy standalone or as part of a larger system.
-- Strong Idempotency Check
-- Smart re collision detection
+- Strong Idempotency Check - Generation of Idempotency token and proper validation with consistency
+- Smart re collision detection - Any payment duplication using smart methods
+- Async Communication - Supports Distributed Message Queue for Large Scale Transactions
 ---
 
 ## Tech Stack
@@ -112,7 +113,7 @@ mvn test
 - [ ] Integration with Stripe, PayPal, Razorpay
 - [ ] Webhooks for transaction status updates
 - [ ] Design Idempotency Service 
-- [ ] Design Re collision Service 
+- [ ] Design Re-collision Service 
 
 ---
 
