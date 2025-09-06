@@ -2,10 +2,8 @@ package com.payment.PaymentGateway.Model.Tables;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 /**
  * Client Who is mainly responsible for any payment
@@ -14,18 +12,21 @@ import java.util.Set;
 @Entity
 public class Client {
     @Id
-    @Column(name = "clientId")
     private String clientId;
-    @Column(name = "clientSecret")
+    @Column
     private String clientSecret;
+    @Column
+    private CLIENT_TYPE clientType;
+    @Column
+    private String  lastActiveTime;
+    @Column
+    private boolean isActive;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
-    private List<Payment> payments;
+    @OneToMany(mappedBy = "client")
+    private List<IdempotencyToken> idempotencyTokens;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
-    private List<TransactionRequest> transactionRequests;
-
-    public Client(){}
+    @OneToMany(mappedBy = "client")
+    private List<PaymentRequest> paymentRequests;
 
     public String getClientId() {
         return clientId;
@@ -43,29 +44,57 @@ public class Client {
         this.clientSecret = clientSecret;
     }
 
-    public List<Payment> getPayments() {
-        return payments;
+    public CLIENT_TYPE getClientType() {
+        return clientType;
     }
 
-    public void setPayments(List<Payment> payments) {
-        this.payments = payments;
+    public void setClientType(CLIENT_TYPE clientType) {
+        this.clientType = clientType;
     }
 
-    public List<TransactionRequest> getTransactionRequests() {
-        return transactionRequests;
+    public String getLastActiveTime() {
+        return lastActiveTime;
     }
 
-    public void setTransactionRequests(List<TransactionRequest> transactionRequests) {
-        this.transactionRequests = transactionRequests;
+    public void setLastActiveTime(String lastActiveTime) {
+        this.lastActiveTime = lastActiveTime;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public List<IdempotencyToken> getIdempotencyTokens() {
+        return idempotencyTokens;
+    }
+
+    public void setIdempotencyTokens(List<IdempotencyToken> idempotencyTokens) {
+        this.idempotencyTokens = idempotencyTokens;
+    }
+
+    public List<PaymentRequest> getPaymentRequests() {
+        return paymentRequests;
+    }
+
+    public void setPaymentRequests(List<PaymentRequest> paymentRequests) {
+        this.paymentRequests = paymentRequests;
     }
 
     @Override
-    public String toString() {
-        return "Client{" +
-                "clientId='" + clientId + '\'' +
-                ", clientSecret='" + clientSecret + '\'' +
-                ", payments=" + payments +
-                ", transactionRequests=" + transactionRequests +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Client client = (Client) o;
+        return clientId.equals(client.clientId);
+    }
+
+    @Override
+    public int hashCode() {
+        return clientId.hashCode();
     }
 }

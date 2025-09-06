@@ -1,4 +1,4 @@
 package com.payment.PaymentGateway.Model;
 
-public class Request {
+public interface Request {
 }

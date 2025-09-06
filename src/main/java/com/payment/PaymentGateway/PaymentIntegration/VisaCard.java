@@ -1,6 +1,7 @@
 package com.payment.PaymentGateway.PaymentIntegration;
 
 import com.payment.PaymentGateway.Model.Payment.PaymentMethod;
+import com.payment.PaymentGateway.Model.Tables.PaymentNetwork;
 
 public class VisaCard extends PaymentMethod {
 

@@ -1,4 +1,6 @@
 package com.payment.PaymentGateway.PaymentIntegration;
 
-public class VisaNetwork extends PaymentNetwork{
+import com.payment.PaymentGateway.Model.Tables.PaymentNetwork;
+
+public class VisaNetwork extends PaymentNetwork {
 }

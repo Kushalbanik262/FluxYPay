@@ -2,37 +2,30 @@ package com.payment.PaymentGateway.Model.Tables;
 
 import com.payment.PaymentGateway.Model.Payment.TRANSACTION_STATUS;
 import com.payment.PaymentGateway.Model.Request;
-import com.payment.PaymentGateway.PaymentIntegration.PAYMENT_TYPE;
 import jakarta.persistence.*;
 
-/** TODO : Change all the TransactionRequest to paymentRequest and vise versa logically
- * Request for all sort of transactions
- */
+@Table
 @Entity
-@Table(name = "TransactionRequest")
-public abstract class TransactionRequest extends Request {
+public class TransactionRequest implements Request {
     @Id
-    @Column(name = "id")
     private String id;
     @Column
-    private String dateTime;
-    @Column(name = "amount")
-    private int paymentAmount;
-    @Column(name = "method")
-    private PAYMENT_TYPE paymentMethod;
-
-    @Column(name = "transactionStatus")
+    private String requestTime;
+    @Column
     private TRANSACTION_STATUS transactionStatus;
+    @ManyToOne
+    private TransactionToken transactionToken;
+    @ManyToOne
+    private Transaction transaction;
+    @Column
+    private String webHook;
+    @OneToOne
+    private IdempotencyToken idempotencyToken;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
-    private Token paymentToken;
-
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "client")
-    private Client client;
-
-    public TransactionRequest() {
-    }
+    @ManyToOne
+    private User sender;
+    @ManyToOne
+    private User receiver;
 
     public String getId() {
         return id;
@@ -42,28 +35,12 @@ public abstract class TransactionRequest extends Request {
         this.id = id;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public String getRequestTime() {
+        return requestTime;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
-    }
-
-    public int getPaymentAmount() {
-        return paymentAmount;
-    }
-
-    public void setPaymentAmount(int paymentAmount) {
-        this.paymentAmount = paymentAmount;
-    }
-
-    public PAYMENT_TYPE getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(PAYMENT_TYPE paymentMethod) {
-        this.paymentMethod = paymentMethod;
+    public void setRequestTime(String requestTime) {
+        this.requestTime = requestTime;
     }
 
     public TRANSACTION_STATUS getTransactionStatus() {
@@ -74,20 +51,52 @@ public abstract class TransactionRequest extends Request {
         this.transactionStatus = transactionStatus;
     }
 
-    public Token getPaymentToken() {
-        return paymentToken;
+    public TransactionToken getTransactionToken() {
+        return transactionToken;
     }
 
-    public void setPaymentToken(Token paymentToken) {
-        this.paymentToken = paymentToken;
+    public void setTransactionToken(TransactionToken transactionToken) {
+        this.transactionToken = transactionToken;
     }
 
-    public Client getClient() {
-        return client;
+    public Transaction getTransaction() {
+        return transaction;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }
+
+    public String getWebHook() {
+        return webHook;
+    }
+
+    public void setWebHook(String webHook) {
+        this.webHook = webHook;
+    }
+
+    public IdempotencyToken getIdempotencyToken() {
+        return idempotencyToken;
+    }
+
+    public void setIdempotencyToken(IdempotencyToken idempotencyToken) {
+        this.idempotencyToken = idempotencyToken;
+    }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public User getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
     }
 
     @Override

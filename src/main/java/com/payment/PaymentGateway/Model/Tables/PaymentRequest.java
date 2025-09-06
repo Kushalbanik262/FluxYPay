@@ -1,66 +1,96 @@
 package com.payment.PaymentGateway.Model.Tables;
 
-
 import com.payment.PaymentGateway.Model.Request;
-import com.payment.PaymentGateway.PaymentIntegration.PaymentNetwork;
 import jakarta.persistence.*;
 
+/**
+ * Request for all sort of transactions
+ */
 @Entity
-public class PaymentRequest extends Request {
+@Table(name = "PaymentRequest")
+public abstract class PaymentRequest implements Request {
     @Id
-    private String id;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "paymentToken")
-    private Token paymentToken;
-
+    private String paymentRequestId;
+    @OneToOne
+    private PaymentDetails paymentDetails;
+    @OneToOne
+    private IdempotencyToken idempotencyToken;
+    @OneToOne
+    private TransactionToken transactionToken;
+    @Column
+    private String requestTimeStamp;
+    @Column
+    private String processingTimestamp;
     @ManyToOne
-    @JoinColumn(name = "payment")
-    private Payment payment;
+    private Client client;
 
-    @ManyToOne
-    @JoinColumn(name = "paymentNetwork")
-    private PaymentNetwork paymentNetwork;
-
-    public String getId() {
-        return id;
+    public String getPaymentRequestId() {
+        return paymentRequestId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setPaymentRequestId(String paymentRequestId) {
+        this.paymentRequestId = paymentRequestId;
     }
 
-    public Token getToken() {
-        return paymentToken;
+    public PaymentDetails getPaymentDetails() {
+        return paymentDetails;
     }
 
-    public void setToken(Token token) {
-        this.paymentToken = token;
+    public void setPaymentDetails(PaymentDetails paymentDetails) {
+        this.paymentDetails = paymentDetails;
     }
 
-    public Payment getPayment() {
-        return payment;
+    public IdempotencyToken getIdempotencyToken() {
+        return idempotencyToken;
     }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    public void setIdempotencyToken(IdempotencyToken idempotencyToken) {
+        this.idempotencyToken = idempotencyToken;
     }
 
-    public PaymentNetwork getPaymentNetwork() {
-        return paymentNetwork;
+    public TransactionToken getTransactionToken() {
+        return transactionToken;
     }
 
-    public void setPaymentNetwork(PaymentNetwork paymentNetwork) {
-        this.paymentNetwork = paymentNetwork;
+    public void setTransactionToken(TransactionToken transactionToken) {
+        this.transactionToken = transactionToken;
+    }
+
+    public String getRequestTimeStamp() {
+        return requestTimeStamp;
+    }
+
+    public void setRequestTimeStamp(String requestTimeStamp) {
+        this.requestTimeStamp = requestTimeStamp;
+    }
+
+    public String getProcessingTimestamp() {
+        return processingTimestamp;
+    }
+
+    public void setProcessingTimestamp(String processingTimestamp) {
+        this.processingTimestamp = processingTimestamp;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
-    public String toString() {
-        return "PaymentRequest{" +
-                "id='" + id + '\'' +
-                ", token=" + paymentToken +
-                ", payment=" + payment +
-                ", paymentNetwork=" + paymentNetwork +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PaymentRequest that = (PaymentRequest) o;
+        return paymentRequestId.equals(that.paymentRequestId);
+    }
+
+    @Override
+    public int hashCode() {
+        return paymentRequestId.hashCode();
     }
 }

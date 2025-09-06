@@ -1,9 +1,8 @@
-package com.payment.PaymentGateway.Model.Payment;
+package com.payment.PaymentGateway.Model.Tables;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.payment.PaymentGateway.Model.Payment.REQUEST_TYPE;
+import com.payment.PaymentGateway.Model.Request;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -27,25 +26,21 @@ public class IdempotencyToken {
     @Column
     private REQUEST_TYPE requestType;
 
-    public IdempotencyToken() {
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Client client;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        IdempotencyToken that = (IdempotencyToken) o;
+        return id.equals(that.id);
     }
 
-    public IdempotencyToken(String id, LocalDateTime generationTime, LocalDateTime expiredAt) {
-        this.id = id;
-        this.generationTime = generationTime;
-        this.expiredAt = expiredAt;
-    }
-
-    public REQUEST_TYPE getRequestType() {
-        return requestType;
-    }
-
-    public void setRequestType(REQUEST_TYPE requestType) {
-        this.requestType = requestType;
-    }
-
-    public LocalDateTime getLastProcessingTime() {
-        return lastProcessingTime;
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 
     public String getId() {
@@ -80,7 +75,7 @@ public class IdempotencyToken {
         this.processed = processed;
     }
 
-    public LocalDateTime isLastProcessingTime() {
+    public LocalDateTime getLastProcessingTime() {
         return lastProcessingTime;
     }
 
@@ -104,17 +99,19 @@ public class IdempotencyToken {
         this.markedAsMalicious = markedAsMalicious;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        IdempotencyToken that = (IdempotencyToken) o;
-        return id.equals(that.id);
+    public REQUEST_TYPE getRequestType() {
+        return requestType;
     }
 
-    @Override
-    public int hashCode() {
-        return id.hashCode();
+    public void setRequestType(REQUEST_TYPE requestType) {
+        this.requestType = requestType;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

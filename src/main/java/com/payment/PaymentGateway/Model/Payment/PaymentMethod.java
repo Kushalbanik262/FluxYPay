@@ -1,7 +1,7 @@
 package com.payment.PaymentGateway.Model.Payment;
 
 import com.payment.PaymentGateway.PaymentIntegration.PAYMENT_TYPE;
-import com.payment.PaymentGateway.PaymentIntegration.PaymentNetwork;
+import com.payment.PaymentGateway.Model.Tables.PaymentNetwork;
 
 public abstract class PaymentMethod {
     protected String id;

@@ -1,4 +1,6 @@
 package com.payment.PaymentGateway.PaymentIntegration;
 
-public class NPCIInterface extends PaymentNetwork{
+import com.payment.PaymentGateway.Model.Tables.PaymentNetwork;
+
+public class NPCIInterface extends PaymentNetwork {
 }

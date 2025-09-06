@@ -1,47 +1,66 @@
 package com.payment.PaymentGateway.Model.Tables;
 
 import com.payment.PaymentGateway.Model.Payment.PAYMENT_STATUS;
+import com.payment.PaymentGateway.PaymentIntegration.PAYMENT_TYPE;
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
-@Table
 public class Payment {
     @Id
-    @Column(name="paymentId")
-    private String paymentId;
-
-    @Column(name = "paymentTime")
+    private String id;
+    @Column
     private String dateTime;
-
-    @Column(name = "paymentStatus")
+    @Enumerated(EnumType.STRING)
+    private PAYMENT_TYPE paymentType;
+    @OneToOne
+    private PaymentDetails paymentDetails;
+    @ManyToOne
+    private User user;
+    @Enumerated(EnumType.STRING)
     private PAYMENT_STATUS paymentStatus;
+    @OneToOne
+    private Transaction transaction;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "client")
-    private Client client;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "payment")
-    private List<PaymentRequest> transactionRequests;
 
-    public Payment() {
+    public String getId() {
+        return id;
     }
 
-    public String getPaymentId() {
-        return paymentId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setPaymentId(String paymentId) {
-        this.paymentId = paymentId;
-    }
-
-    public String getDateTime() {
+    public String getTime() {
         return dateTime;
     }
 
-    public void setDateTime(String dateTime) {
+    public void setTime(String dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public PAYMENT_TYPE getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(PAYMENT_TYPE paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public PaymentDetails getPaymentDetails() {
+        return paymentDetails;
+    }
+
+    public void setPaymentDetails(PaymentDetails paymentDetails) {
+        this.paymentDetails = paymentDetails;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public PAYMENT_STATUS getPaymentStatus() {
@@ -52,30 +71,25 @@ public class Payment {
         this.paymentStatus = paymentStatus;
     }
 
-    public Client getClient() {
-        return client;
+    public Transaction getTransaction() {
+        return transaction;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public List<PaymentRequest> getTransactionRequests() {
-        return transactionRequests;
-    }
-
-    public void setTransactionRequests(List<PaymentRequest> transactionRequests) {
-        this.transactionRequests = transactionRequests;
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
     }
 
     @Override
-    public String toString() {
-        return "Payment{" +
-                "paymentId='" + paymentId + '\'' +
-                ", dateTime='" + dateTime + '\'' +
-                ", paymentStatus=" + paymentStatus +
-                ", client=" + client +
-                ", transactionRequests=" + transactionRequests +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Payment payment = (Payment) o;
+        return id.equals(payment.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }
