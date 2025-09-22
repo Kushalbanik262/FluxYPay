@@ -3,25 +3,15 @@ package com.payment.PaymentGateway.PaymentIntegration.Validator;
 import com.payment.PaymentGateway.Model.Tables.PaymentRequest;
 import com.payment.PaymentGateway.Model.Payment.PaymentVerificationResult;
 import com.payment.PaymentGateway.Model.Tables.TransactionRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.Future;
 
 /**
  * Validate Payment Request against a third party Network
  */
-public class PaymentNetworkValidator implements Validator{
-
-
-
-    /**
-     * Verify before issuing a payment token
-     *
-     * @param transactionRequest Request for the transaction
-     */
-    @Override
-    public Future<PaymentVerificationResult> verifyPaymentDuringTransaction(TransactionRequest transactionRequest) {
-        return null;
-    }
+@Service
+public class PaymentNetworkValidator implements PaymentServiceValidator{
 
     /**
      * verify During payment
