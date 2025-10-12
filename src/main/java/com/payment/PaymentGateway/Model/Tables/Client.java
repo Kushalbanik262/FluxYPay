@@ -1,6 +1,7 @@
 package com.payment.PaymentGateway.Model.Tables;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  */
 @Table(name = "client")
 @Entity
+@Data
 public class Client {
     @Id
     private String clientId;
@@ -28,61 +30,6 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<PaymentRequest> paymentRequests;
 
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
-    }
-
-    public String getClientSecret() {
-        return clientSecret;
-    }
-
-    public void setClientSecret(String clientSecret) {
-        this.clientSecret = clientSecret;
-    }
-
-    public CLIENT_TYPE getClientType() {
-        return clientType;
-    }
-
-    public void setClientType(CLIENT_TYPE clientType) {
-        this.clientType = clientType;
-    }
-
-    public String getLastActiveTime() {
-        return lastActiveTime;
-    }
-
-    public void setLastActiveTime(String lastActiveTime) {
-        this.lastActiveTime = lastActiveTime;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public List<IdempotencyToken> getIdempotencyTokens() {
-        return idempotencyTokens;
-    }
-
-    public void setIdempotencyTokens(List<IdempotencyToken> idempotencyTokens) {
-        this.idempotencyTokens = idempotencyTokens;
-    }
-
-    public List<PaymentRequest> getPaymentRequests() {
-        return paymentRequests;
-    }
-
-    public void setPaymentRequests(List<PaymentRequest> paymentRequests) {
-        this.paymentRequests = paymentRequests;
-    }
 
     @Override
     public boolean equals(Object o) {

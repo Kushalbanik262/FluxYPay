@@ -1,6 +1,7 @@
 package com.payment.PaymentGateway.Services;
 
 import com.payment.PaymentGateway.Model.Tables.Client;
+import org.springframework.stereotype.Service;
 
 /**
  * Service to Verify Clients
@@ -10,4 +11,5 @@ public interface ClientVerificationService {
      * Verify any Specific Client
      */
     public void verifyClient(Client client);
+
 }

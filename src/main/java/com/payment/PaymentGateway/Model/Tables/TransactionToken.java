@@ -1,5 +1,6 @@
 package com.payment.PaymentGateway.Model.Tables;
 
+import com.payment.PaymentGateway.Model.Auth.Token;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 
 @Table(name = "TransactionToken")
 @Entity
-public class TransactionToken {
+public class TransactionToken extends Token {
     @Id
     private String id;
     @Column
@@ -17,7 +18,7 @@ public class TransactionToken {
     @Column
     private String notBefore;
     @Column
-    private String tokenHash;
+    private String tokenHash; // PCI - DSS valid token
     @OneToOne
     private PaymentRequest paymentRequest;
     @OneToMany(mappedBy = "transactionToken")
