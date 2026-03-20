@@ -1,0 +1,45 @@
+# Prometheus Configuration for FluxyPay
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'fluxypay-monitor'
+
+# Alerting configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+# Load rules once and periodically evaluate them
+rule_files: []
+
+# Scrape configurations
+scrape_configs:
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # FluxyPay Application Metrics
+  - job_name: 'fluxypay'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['localhost:8080']
+    scrape_interval: 10s
+    scrape_timeout: 5s
+
+  # Kafka Broker Metrics
+  - job_name: 'kafka'
+    static_configs:
+      - targets: ['localhost:9092']
+
+  # Redis Metrics (if using redis-exporter)
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['localhost:6379']
+
+  # PostgreSQL Database Metrics (if using postgres-exporter)
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['localhost:9187']
